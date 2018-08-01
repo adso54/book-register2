@@ -12,11 +12,15 @@ import static org.junit.Assert.*;
 
 public class AuthorTest {
 
-    Author author;
+    private Author author;
+    private String firstName;
+    private String lastName;
 
     @Before
     public void setBefore(){
         author = new Author();
+        firstName = "Kamil";
+        lastName = "Danielski";
     }
 
     @Test
@@ -64,5 +68,21 @@ public class AuthorTest {
         books.add(book);
         assertEquals(book.getId(), books.iterator().next().getId());
         assertEquals(1, books.size());
+    }
+
+    @Test
+    public void authorConstructor1(){
+
+        Author author = new Author(firstName, lastName);
+        assertEquals(firstName, author.getFirstName());
+    }
+
+    @Test
+    public void authorConstructor2(){
+        LocalDate birthDate = LocalDate.parse("1985-12-30");
+        Author author = new Author(firstName, lastName, birthDate);
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
+        assertEquals(age, author.getAge());
+        assertEquals(birthDate, author.getBirthDate());
     }
 }
