@@ -25,8 +25,7 @@ public class Author {
     public Author(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
-        this.birthDate = birthDate;
+        setBirhDate(birthDate);
     }
 
     public Author(String firstName, String lastName) {
